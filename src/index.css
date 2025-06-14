@@ -1,0 +1,273 @@
+/* src/index.css */
+/* Configuration for Tailwind CSS should be done in the tailwind.config.ts file */
+
+/*
+========================================
+  LAYER 1: TAILWIND CORE & MODERN RESET
+========================================
+  Establishes a predictable, explicit, and manageable cascade. The modern
+  reset ensures cross-browser consistency without being overly aggressive.
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  *:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) { all: unset; display: revert; }
+  html { -webkit-text-size-adjust: 100%; -moz-tab-size: 4; tab-size: 4; }
+  body { line-height: 1.5; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  a, button { cursor: revert; }
+  ol, ul, menu { list-style: none; }
+  img { max-width: 100%; height: auto; }
+  table { border-collapse: collapse; }
+  input, textarea { -webkit-user-select: auto; user-select: auto; }
+  textarea { white-space: revert; }
+  meter { -webkit-appearance: revert; appearance: revert; }
+  ::placeholder { color: unset; }
+  :where([hidden]) { display: none; }
+  :where([contenteditable]:not([contenteditable="false"])) { -moz-user-modify: read-write; -webkit-user-modify: read-write; overflow-wrap: break-word; -webkit-line-break: after-white-space; user-select: auto; }
+  :where([draggable="true"]) { -webkit-user-drag: element; }
+}
+
+/*
+========================================
+  LAYER 2: THEME & DESIGN TOKEN SYSTEM
+========================================
+  The core of our design system. It uses HSL values for easy manipulation
+  of saturation and lightness. The default theme is light. Apply the `.dark`
+  class to `<html>` or `<body>` to switch to the dark theme.
+*/
+@layer base {
+  :root {
+    /* ------------------------------ */
+    /* Light Theme (Default)          */
+    /* ------------------------------ */
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-mono: 'Fira Code', ui-monospace, monospace;
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --transition-fast: 200ms cubic-bezier(0.25, 1, 0.5, 1);
+    --transition-medium: 400ms cubic-bezier(0.25, 1, 0.5, 1);
+
+    /* Color Roles (Light) */
+    --color-background: 220 20% 96%;  /* Off-white */
+    --color-surface: 220 25% 100%; /* Pure white for cards/surfaces */
+    --color-primary: 210 100% 50%;   /* Vibrant Blue */
+    --color-secondary: 260 80% 60%;  /* Cool Violet */
+    --color-accent: 170 90% 45%;   /* Energetic Teal */
+    --color-success: 130 60% 50%;    /* Green */
+    --color-danger: 0 80% 60%;      /* Red */
+    --color-warning: 40 95% 55%;     /* Amber */
+
+    --color-text-primary: 220 25% 10%;   /* Near-black */
+    --color-text-secondary: 220 15% 35%;  /* Dark gray */
+    --color-text-muted: 220 10% 55%;   /* Lighter gray */
+
+    --color-border: 220 15% 85%;
+    --color-border-interactive: 220 15% 75%;
+    --shadow-sm: 0 1px 2px hsl(var(--color-text-primary) / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(var(--color-text-primary) / 0.1), 0 2px 4px -2px hsl(var(--color-text-primary) / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(var(--color-text-primary) / 0.1), 0 4px 6px -4px hsl(var(--color-text-primary) / 0.1);
+  }
+
+  .dark {
+    /* ------------------------------ */
+    /* Dark Theme                     */
+    /* ------------------------------ */
+    --color-background: 220 25% 8%;   /* Deep space blue */
+    --color-surface: 220 25% 12%;  /* Slightly lighter surface */
+    --color-primary: 210 100% 65%;   /* Lighter Blue for contrast */
+    --color-secondary: 260 85% 75%;  /* Lighter Violet */
+    --color-accent: 170 90% 60%;   /* Brighter Teal */
+    --color-success: 130 70% 65%;
+    --color-danger: 0 85% 70%;
+    --color-warning: 40 95% 65%;
+
+    --color-text-primary: 220 20% 95%;   /* Soft off-white */
+    --color-text-secondary: 220 15% 70%;  /* Light gray */
+    --color-text-muted: 220 10% 50%;   /* Muted gray */
+
+    --color-border: 220 15% 20%;
+    --color-border-interactive: 220 15% 30%;
+    --shadow-sm: 0 1px 2px hsl(0 0% 0% / 0.2);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -2px hsl(0 0% 0% / 0.3);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.4), 0 4px 6px -4px hsl(0 0% 0% / 0.4);
+  }
+
+  /* ------------------------------ */
+  /* Global Base Styles             */
+  /* ------------------------------ */
+  html {
+    font-family: var(--font-sans);
+    background-color: hsl(var(--color-background));
+    color: hsl(var(--color-text-primary));
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: hsl(var(--color-primary) / 0.8);
+    color: hsl(var(--color-background));
+  }
+
+  :focus-visible {
+    outline: 3px solid hsl(var(--color-accent));
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Custom Themed Scrollbar */
+  ::-webkit-scrollbar { width: 12px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--color-border));
+    border-radius: 20px;
+    border: 3px solid hsl(var(--color-background));
+  }
+  ::-webkit-scrollbar-thumb:hover { background-color: hsl(var(--color-border-interactive)); }
+}
+
+/*
+========================================
+  LAYER 3: COMPONENT & LAYOUT STYLES
+========================================
+  Base styles for common, reusable components like cards, buttons, badges,
+  and layout containers.
+*/
+@layer components {
+  /*
+    .card
+    - A versatile surface container for content.
+    - Includes a subtle border and shadow for depth.
+    - Has an interactive glow effect on hover.
+  */
+  .card {
+    position: relative;
+    background-color: hsl(var(--color-surface));
+    border-radius: var(--radius-lg);
+    border: 1px solid hsl(var(--color-border));
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg), 0 0 20px -5px hsl(var(--color-accent) / 0.2);
+  }
+
+  /*
+    .button-primary
+    - Main call-to-action button.
+  */
+  .button-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    color: hsl(var(--color-background));
+    background-color: hsl(var(--color-primary));
+    transition: transform var(--transition-fast), background-color var(--transition-fast);
+  }
+  .button-primary:hover {
+    transform: scale(1.05);
+    background-color: hsl(var(--color-primary) / 0.9);
+  }
+  .button-primary:active {
+    transform: scale(0.98);
+  }
+
+  /*
+    .badge
+    - Small, inline element for tags or status indicators.
+  */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: hsl(var(--color-accent) / 0.9);
+    background-color: hsl(var(--color-accent) / 0.1);
+    border: 1px solid hsl(var(--color-accent) / 0.2);
+  }
+}
+
+/*
+========================================
+  LAYER 4: UTILITIES & ANIMATIONS
+========================================
+  A library of custom, reusable utility classes and keyframe animations for
+  creating dopamine-triggering, emotionally intelligent micro-interactions.
+*/
+@layer utilities {
+  /*
+    .glassmorphic
+    - Applies a frosted glass effect to an element.
+    - Requires a semi-transparent background color to be effective.
+    - Example: `bg-slate-900/70 glassmorphic`
+  */
+  .glassmorphic {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  /* --- Keyframe Animation Library --- */
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slide-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 15px -3px hsl(var(--color-accent) / 0); }
+    50% { box-shadow: 0 0 15px -3px hsl(var(--color-accent) / 0.5); }
+  }
+  @keyframes shimmer {
+    100% { transform: translateX(100%); }
+  }
+  @keyframes bounce-sm {
+    0%, 100% { transform: translateY(0); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+    50% { transform: translateY(-15%); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+  }
+  @keyframes fade-in    { from { opacity:0; transform:translateY(10px);} to { opacity:1; transform:translateY(0);} }
+  @keyframes pulse-slow { 0%,100% { transform:scale(1); opacity:.1; }
+                          50%      { transform:scale(1.1); opacity:.15;} }
+
+  .animate-fade-in  { animation: fade-in .5s ease-out forwards; }
+  .animate-pulse-slow { animation: pulse-slow 8s infinite ease-in-out; }
+
+  /* Custom scrollbar (works in WebKit & Chromium) */
+  ::-webkit-scrollbar        { width: 8px; }
+  ::-webkit-scrollbar-track  { background: transparent; }
+  ::-webkit-scrollbar-thumb  { background-color: hsl(var(--color-border));
+                              border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background-color: hsl(var(--color-text-muted)); }
+
+  /* --- Animation Utility Classes --- */
+  .animate-fade-in { animation: fadeIn 0.5s var(--transition-medium) both; }
+  .animate-slide-up { animation: slide-up 0.6s var(--transition-medium) both; }
+  .animate-pulse-glow { animation: pulse-glow 2.5s infinite; }
+  .animate-bounce-sm { animation: bounce-sm 1s infinite; }
+
+  /*
+    .shimmer-effect
+    - A utility for creating a metallic shimmer on hover.
+    - Apply to a child pseudo-element (`::after`) of a container with
+      `position: relative` and `overflow: hidden`.
+  */
+  .shimmer-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    transform: translateX(-100%);
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(var(--color-surface) / 0.2), transparent);
+    transition: transform 0.8s var(--transition-medium);
+  }
+  .shimmer-effect:hover::after {
+    transform: translateX(100%);
+  }
+}
