@@ -1,17 +1,17 @@
 repos:
   # core utility hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0               # latest stable
+    rev: v5.0.0 # latest stable
     hooks:
       - id: end-of-file-fixer
-      - id: trailing-whitespace   # ← correct id
+      - id: trailing-whitespace # ← correct id
       - id: check-yaml
       - id: check-added-large-files
       - id: check-merge-conflict
 
   # prettier
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: prettier@v2.8.4
+    rev: v2.8.0  # use the actual tag name (no "prettier@" prefix)
     hooks:
       - id: prettier
         files: \.(js|jsx|ts|tsx|json|css|scss|md|ya?ml)$
@@ -25,7 +25,7 @@ repos:
         files: \.(js|jsx|ts|tsx|mjs|cjs)$
         args:
           - --config
-          - eslint.config.cjs      # see §2
+          - eslint.config.cjs # see §2
           - --fix
         additional_dependencies:
           - eslint@9.29.0

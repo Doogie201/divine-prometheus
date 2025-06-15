@@ -13,3 +13,7 @@ module.exports = [
     rules:             { ...reactHooks.configs.recommended.rules },
   },
 ];
+module.exports.push({
+    ignores: ["eslint.config.*", "commitlint.config.*"],
+  });
+  
