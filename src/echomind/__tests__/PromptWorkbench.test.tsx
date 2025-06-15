@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import PromptWorkbench from "../PromptWorkbench";
 import { DryRunProvider } from "../../dryrun/DryRunProvider";
+import "@testing-library/jest-dom";
 
 jest.useFakeTimers();
 

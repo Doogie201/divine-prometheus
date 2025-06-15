@@ -7,6 +7,7 @@
 // The logic and functionality remain unchanged from v4.
 // ---------------------------------------------------------------------------
 import { useState, useEffect, useRef, useMemo } from "react";
+import type { JSX } from "react";
 import {
   analyzePrompt,
   enhancePrompt,
@@ -491,10 +492,10 @@ export default function PromptWorkbench({ onClose }: WorkbenchProps) {
                 {analysis?.isSpecific && (
                   <AnalysisPill icon="check" text="Specific" type="success" />
                 )}
-                {analysis?.isConcise > 80 && (
+                {analysis && analysis.isConcise > 80 && (
                   <AnalysisPill icon="check" text="Concise" type="success" />
                 )}
-                {analysis?.isConcise < 40 && (
+                {analysis && analysis.isConcise < 40 && (
                   <AnalysisPill icon="alert" text="Wordy" type="warning" />
                 )}
               </div>
