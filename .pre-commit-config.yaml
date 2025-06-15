@@ -1,90 +1,52 @@
----
-# .pre-commit-config.yaml
-# Configuration for pre-commit hooks.
-# This file defines the repositories and hooks to be run before committing changes.
-
 repos:
-  # General pre-commit hooks for common code quality checks
+  # core utility hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    # Using the latest stable revision for pre-commit-hooks
-    # This should ensure all standard hooks are available and up-to-date.
-    rev: v4.6.0 # Current latest as of check
+    rev: v5.0.0               # latest stable
     hooks:
-      - id: end-of-file-fixer # Ensures files end with a single newline
-      - id: trailing-whitespace # CORRECTED: Removes extraneous whitespace at the end of lines
-      - id: check-yaml # Checks YAML files for syntax errors
-      - id: check-added-large-files # Prevents committing excessively large files
-      - id: check-merge-conflict # Checks for Git merge conflict strings
+      - id: end-of-file-fixer
+      - id: trailing-whitespace   # ← correct id
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-merge-conflict
 
-  # Prettier hook for code formatting
+  # prettier
   - repo: https://github.com/pre-commit/mirrors-prettier
-    # Pin to a specific Prettier version
-    rev: "prettier@2.8.0" # Make sure this matches your project's Prettier version
+    rev: v4.0.0-alpha.8              # real tag, not “prettier@…”
     hooks:
       - id: prettier
-        # Adjust file types if needed, this covers common web development files
-        files: \.(js|jsx|ts|tsx|json|css|scss|md|yaml|yml)$
+        files: \.(js|jsx|ts|tsx|json|css|scss|md|ya?ml)$
 
-  # ESLint hook for JavaScript/TypeScript linting using the mirrors-eslint repo
-  # This hook is configured to work with ESLint v9's flat config system
+  # eslint 9 flat-config
   - repo: https://github.com/pre-commit/mirrors-eslint
-    # CORRECTED: Use a valid Git tag from the mirrors-eslint repository.
-    # v4.0.0 specifically states it upgrades eslint to v9.2.0.
-    rev: v4.0.0
+    rev: v9.29.0
     hooks:
       - id: eslint
-        name: ESLint (Flat Config) # Descriptive name for the hook
-        # Specify file types that ESLint should run on, including .cjs for the config itself
+        name: eslint-flat
         files: \.(js|jsx|ts|tsx|mjs|cjs)$
-        # Pass the config file explicitly, targeting the new CommonJS file
-        entry: eslint
         args:
-          - "--config"
-          - "eslint.config.cjs" # Point to the renamed CommonJS config file
-          - "--fix" # Optional: enable auto-fixing for lint errors
-        # Language is node, as it's a Node.js-based hook
-        language: node
-        # Add all dependencies that your eslint.config.cjs imports or extends from
-        # These will be installed in the isolated pre-commit.ci environment for the hook.
+          - --config
+          - eslint.config.cjs      # see §2
+          - --fix
         additional_dependencies:
-          - "eslint@9.29.0" # Ensure ESLint itself is the correct version
-          - "@eslint/js@9.29.0" # Crucial for ESLint v9's recommended rules
-          - "globals@^13.0.0" # For browser globals
-          - "eslint-plugin-react-hooks@^4.0.0" # For React Hooks rules
-          - "eslint-plugin-react-refresh@^0.4.0" # For React Refresh specific rules
-          - "typescript-eslint@^17.0.0" # The main package for TypeScript ESLint integration
-          # Add any other ESLint plugins or shareable configs you use, e.g.:
-          # - "eslint-config-prettier@^9.0.0"
-          # - "eslint-plugin-react@^7.0.0" # If you use this explicitly for React general rules
+          - eslint@9.29.0
+          - "@eslint/js@9.29.0"
+          - globals@^13
+          - eslint-plugin-react-hooks@^4
+          # add more plugins here as you need them
 
-  # gitlint hook for commit message linting
-  # (Assuming this hook is still desired, as it appeared in your earlier logs)
-  - repo: https://github.com/jorisroovers/gitlint
-    rev: "v0.19.1" # Use a stable revision
-    hooks:
-      - id: gitlint
-      
-  # 4. TypeScript type-check
+  # local TypeScript check
   - repo: local
     hooks:
       - id: tsc
         name: TypeScript type-check
         language: node
         entry: npx tsc -p tsconfig.json --noEmit
-        pass_filenames: false        # tsc works on the whole project
+        pass_filenames: false
         additional_dependencies:
-          - "typescript@^5"
+          - typescript@^5
 
-  # 5. Conventional-Commits lint on commit-msgs
+  # commit-message lint
   - repo: https://github.com/jorisroovers/gitlint
     rev: v0.19.1
     hooks:
       - id: gitlint
-
-  # - repo: https://github.com/belak/pre-commit-node-ts
-  #   rev: v1.5.0
-  #   hooks:
-  #     - id: ts-typecheck
-  #       additional_dependencies:
-  #         - "typescript@^5"
-  #         - "@types/react@^18"
