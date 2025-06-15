@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Header } from "./components/Header";
-import { Navigation, Page } from "./components/Navigation";
+import { Navigation } from "./components/Navigation";
+import type { Page } from "./components/Navigation";
 import { UserCreationForm } from "./components/UserCreationForm";
 import PromptWorkbench from "./echomind/PromptWorkbench";
 import { useDryRun } from "./dryrun/DryRunProvider";
