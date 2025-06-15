@@ -9,7 +9,8 @@
     "css:build": "postcss src/index.css -o dist/tailwind.css",
     "lint": "eslint .",
     "preview": "vite preview",
-    "tailwind:build": "npx tailwindcss -o src/tailwind.css --minify"
+    "tailwind:build": "npx tailwindcss -o src/tailwind.css --minify",
+    "test": "echo \"(no tests yet)\" && exit 0"
   },
   "dependencies": {
     "react": "^19.1.0",

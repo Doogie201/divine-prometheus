@@ -34,11 +34,13 @@ repos:
   # 4. TypeScript type-check
   - repo: local
     hooks:
-      - id: ts-typecheck
+      - id: tsc
         name: TypeScript type-check
-        entry: npx tsc --noEmit
-        language: system
-        pass_filenames: false
+        language: node
+        entry: npx tsc -p tsconfig.json --noEmit
+        pass_filenames: false        # tsc works on the whole project
+        additional_dependencies:
+          - "typescript@^5"
 
   # 5. Conventional-Commits lint on commit-msgs
   - repo: https://github.com/jorisroovers/gitlint
@@ -53,3 +55,4 @@ repos:
   #       additional_dependencies:
   #         - "typescript@^5"
   #         - "@types/react@^18"
+  
