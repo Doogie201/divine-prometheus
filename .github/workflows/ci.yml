@@ -36,3 +36,4 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: Doogie201/divine-prometheus
+
