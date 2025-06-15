@@ -2,8 +2,6 @@
 logs
 *.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
@@ -40,8 +38,6 @@ dist-ssr
 # logs
 *.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # OS files
 .DS_Store
@@ -55,7 +51,3 @@ Thumbs.db
 # TypeScript
 *.tsbuildinfo
 
-# lockfiles if you use yarn
-# keep one lockfile only
-package-lock.json
-yarn.lock
