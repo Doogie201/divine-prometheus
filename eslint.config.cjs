@@ -1,3 +1,5 @@
+/* eslint-env node */
+/* eslint-env node */
 // eslint.config.cjs
 const js = require("@eslint/js/src/index.js");
 const globals = require("globals");
