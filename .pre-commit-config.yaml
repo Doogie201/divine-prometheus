@@ -20,26 +20,16 @@ repos:
         files: '\.(js|jsx|ts|tsx|css|html|json|md)$'
 
   # 3. ESLint (static analysis)
-  # .pre-commit-config.yaml
   - repo: https://github.com/pre-commit/mirrors-eslint
-    # Use a specific rev for ESLint 9 compatible versions
-    # Check mirrors-eslint repo for the latest rev that supports ESLint 9 and its dependencies.
-    # You might need to experiment with `rev`.
-    # For example, a recent one might be something like:
-    rev: v9.2.9 # Or the latest stable tag that bundles ESLint 9
+    rev: v9.29.0
     hooks:
       - id: eslint
-        files: \.(js|jsx|ts|tsx|mjs|cjs)$ # Ensure all relevant file types are covered
-        types: [file]
-        args: [--fix] # Optional: if you want it to auto-fix
-        # Crucially, add these additional dependencies
         additional_dependencies:
-          - eslint@9.29.0
-          - "@eslint/js@9.29.0" # Pin to exact version or use ^9
-          - typescript-eslint@^17.0.0 # Or whatever version you're using locally for tseslint
-          - globals@^13.0.0
-          - eslint-plugin-react-hooks@^4.0.0
-          - eslint-plugin-react-refresh@^0.4.0 # If you're using this plugin
+          - "eslint@9.29.0"
+          - "@eslint/js@^9"
+          - "globals@^13"
+          - "eslint-plugin-react-hooks@^4"
+        files: '\.(js|jsx|ts|tsx)$'
 
   # 4. TypeScript type-check
   - repo: local
@@ -65,3 +55,4 @@ repos:
   #       additional_dependencies:
   #         - "typescript@^5"
   #         - "@types/react@^18"
+
