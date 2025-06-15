@@ -39,7 +39,9 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="min-h-screen w-full bg-gray-900 text-gray-200 font-sans">
-      <div className={`absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 ${currentTheme.toBg} transition-all duration-700 -z-10`}></div>
+      <div
+        className={`absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 ${currentTheme.toBg} transition-all duration-700 -z-10`}
+      ></div>
       <div className="absolute inset-0 bg-grid opacity-5 -z-10"></div>
 
       <div className="relative isolate flex flex-col items-center justify-between p-6 md:p-8 min-h-screen">
@@ -48,9 +50,13 @@ const AppContent: React.FC = () => {
           <Navigation page={page} setPage={setPage} mode={mode} />
           {page === "home" && (
             <div className="text-center animate-fade-in space-y-6">
-              <h2 className="text-3xl font-bold text-white">Validate Real Behavior</h2>
+              <h2 className="text-3xl font-bold text-white">
+                Validate Real Behavior
+              </h2>
               <p className="text-gray-400 max-w-lg">
-                Click the button below to attempt a DOM side-effect (changing the page title). This action will only be executed in 'live' or 'healing' modes.
+                Click the button below to attempt a DOM side-effect (changing
+                the page title). This action will only be executed in 'live' or
+                'healing' modes.
               </p>
               <button
                 onClick={handleTitleChange}
@@ -61,7 +67,9 @@ const AppContent: React.FC = () => {
             </div>
           )}
           {page === "createUser" && <UserCreationForm mode={mode} />}
-          {page === "workbench" && <PromptWorkbench onClose={() => setPage("home")} />}
+          {page === "workbench" && (
+            <PromptWorkbench onClose={() => setPage("home")} />
+          )}
         </main>
         <footer className="w-full text-center p-4 text-gray-600 z-10 text-sm font-mono">
           Dry Run Environment | God-Level Edition

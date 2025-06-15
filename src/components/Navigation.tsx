@@ -17,7 +17,9 @@ export const Navigation: React.FC<Props> = ({ page, setPage, mode }) => {
       <button
         onClick={() => setPage("home")}
         className={`px-5 py-2 rounded-lg flex items-center gap-3 font-semibold transition-colors ${
-          page === "home" ? `bg-white/10 ${currentTheme.textColor}` : "text-gray-400 hover:bg-white/5"
+          page === "home"
+            ? `bg-white/10 ${currentTheme.textColor}`
+            : "text-gray-400 hover:bg-white/5"
         }`}
       >
         <HomeIcon className="w-5 h-5" />
@@ -26,7 +28,9 @@ export const Navigation: React.FC<Props> = ({ page, setPage, mode }) => {
       <button
         onClick={() => setPage("createUser")}
         className={`px-5 py-2 rounded-lg flex items-center gap-3 font-semibold transition-colors ${
-          page === "createUser" ? `bg-white/10 ${currentTheme.textColor}` : "text-gray-400 hover:bg-white/5"
+          page === "createUser"
+            ? `bg-white/10 ${currentTheme.textColor}`
+            : "text-gray-400 hover:bg-white/5"
         }`}
       >
         <UserPlusIcon className="w-5 h-5" />

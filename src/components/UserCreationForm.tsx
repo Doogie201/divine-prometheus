@@ -39,7 +39,11 @@ export const UserCreationForm: React.FC<Props> = ({ mode }) => {
       });
       setName("");
     } catch (error: any) {
-      addToast({ type: "error", title: "Operation Failed", message: error.message });
+      addToast({
+        type: "error",
+        title: "Operation Failed",
+        message: error.message,
+      });
     } finally {
       setIsLoading(false);
     }
@@ -47,11 +51,18 @@ export const UserCreationForm: React.FC<Props> = ({ mode }) => {
 
   return (
     <div className="w-full max-w-md bg-gray-900/30 backdrop-blur-sm p-8 rounded-2xl border border-white/10 shadow-2xl animate-fade-in">
-      <h2 className="text-2xl font-bold text-center text-white mb-2">Register Identity</h2>
-      <p className="text-gray-400 text-center mb-8">This form simulates user creation with retries.</p>
+      <h2 className="text-2xl font-bold text-center text-white mb-2">
+        Register Identity
+      </h2>
+      <p className="text-gray-400 text-center mb-8">
+        This form simulates user creation with retries.
+      </p>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-300 mb-2"
+          >
             Alias
           </label>
           <input
