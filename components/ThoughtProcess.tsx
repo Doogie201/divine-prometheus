@@ -10,7 +10,7 @@ const reflections = [
   "✔️ Edge cases and ethical risks embedded for foresight.",
   "✔️ Decision logic explained to increase user learning.",
   "✔️ Future-proofing added to anticipate deeper needs.",
-  "✔️ Teach-back layer added to reinforce knowledge acquisition."
+  "✔️ Teach-back layer added to reinforce knowledge acquisition.",
 ];
 
 export const ThoughtProcess: React.FC = () => {
@@ -20,7 +20,9 @@ export const ThoughtProcess: React.FC = () => {
 
   return (
     <div className="bg-zinc-900 p-4 rounded-2xl shadow-lg">
-      <h2 className="text-xl font-semibold mb-2">Why This Prompt Was Enhanced</h2>
+      <h2 className="text-xl font-semibold mb-2">
+        Why This Prompt Was Enhanced
+      </h2>
       <ul className="list-disc list-inside text-zinc-400 space-y-1 text-sm">
         {reflections.map((reason, idx) => (
           <li key={idx}>{reason}</li>

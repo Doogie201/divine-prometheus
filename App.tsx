@@ -31,7 +31,9 @@ function App() {
     <main className="min-h-screen bg-zinc-950 text-white p-6">
       <h1 className="text-4xl font-bold mb-4">Divine Prometheus 🔥</h1>
       <p className="text-zinc-400 mb-6 max-w-2xl">
-        Enter a raw prompt and watch it be transformed into a maximized, ethical, emotionally intelligent, and AI-optimized divine prompt. No misuse shall pass.
+        Enter a raw prompt and watch it be transformed into a maximized,
+        ethical, emotionally intelligent, and AI-optimized divine prompt. No
+        misuse shall pass.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

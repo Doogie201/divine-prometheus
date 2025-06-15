@@ -18,7 +18,6 @@ export const PromptInput: React.FC = () => {
   );
 };
 
-
 // == components/EnhancedPreview.tsx ==
 import React from "react";
 import { usePromptEnhancer } from "../hooks/usePromptEnhancer";

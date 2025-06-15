@@ -3,21 +3,26 @@
 /**
  * Defines the possible operational modes for the entire simulation environment.
  */
-export type DryRunMode = 'live' | 'dry' | 'healing' | 'preview';
+export type DryRunMode = "live" | "dry" | "healing" | "preview";
 
 /**
  * A runtime constant array of all available modes.
  * Essential for iterating and building UI controls dynamically.
  */
-export const DRY_RUN_MODES: DryRunMode[] = ['live', 'dry', 'healing', 'preview'];
+export const DRY_RUN_MODES: DryRunMode[] = [
+  "live",
+  "dry",
+  "healing",
+  "preview",
+];
 
 /**
  * Defines the shape for providing mock data in 'preview' mode.
  * This is crucial for testing UI states without actual logic.
  */
 export interface StubData<T> {
-    success: T;
-    failure: Error;
+  success: T;
+  failure: Error;
 }
 
 /**
@@ -25,10 +30,10 @@ export interface StubData<T> {
  * allowing for advanced control over its execution.
  */
 export interface SimulateOptions<T> {
-    /** The number of times to retry the operation upon failure. Defaults to 0. */
-    retries?: number;
-    /** The stubbed data to use when the environment is in 'preview' mode. */
-    stub?: StubData<T>;
+  /** The number of times to retry the operation upon failure. Defaults to 0. */
+  retries?: number;
+  /** The stubbed data to use when the environment is in 'preview' mode. */
+  stub?: StubData<T>;
 }
 
 /**
@@ -40,7 +45,7 @@ export interface SimulatedEvent {
   label: string;
   mode: DryRunMode;
   timestamp: string;
-  status: 'success' | 'failure' | 'retrying' | 'simulated' | 'previewed';
+  status: "success" | "failure" | "retrying" | "simulated" | "previewed";
   operation: string;
   attempts: number;
   result?: any;
@@ -53,7 +58,7 @@ export interface SimulatedEvent {
  */
 export type ToastMessage = {
   id: number;
-  type: 'success' | 'error' | 'info';
+  type: "success" | "error" | "info";
   message: string;
   title: string;
 };
@@ -63,21 +68,21 @@ export type ToastMessage = {
  * This structure holds the breakdown of a user's raw prompt.
  */
 export interface PromptAnalysis {
-    original: string;
-    cleaned: string;
-    detectedLanguage: string;
-    intent: string;
-    missingPieces: string[];
-    clarityScore: number;
-    recommendations: string[];
+  original: string;
+  cleaned: string;
+  detectedLanguage: string;
+  intent: string;
+  missingPieces: string[];
+  clarityScore: number;
+  recommendations: string[];
 }
 
 /**
  * Defines the enhanced prompt result from the PromptEngine.
  */
 export interface EnhancedPrompt {
-    metaPrompt: string;
-    reasoning: string[];
+  metaPrompt: string;
+  reasoning: string[];
 }
 
 /**
@@ -89,7 +94,6 @@ export interface VaultEntry {
   meta: EnhancedPrompt;
 }
 
-
 /**
  * Defines the complete contract for the DryRunContext. This is the API
  * that all components will use to interact with the simulation environment.
@@ -97,10 +101,14 @@ export interface VaultEntry {
 export interface DryRunContextType {
   mode: DryRunMode;
   setMode: (mode: DryRunMode) => void;
-  simulate: <T>(label: string, operation: () => Promise<T>, options?: SimulateOptions<T>) => Promise<T>;
+  simulate: <T>(
+    label: string,
+    operation: () => Promise<T>,
+    options?: SimulateOptions<T>
+  ) => Promise<T>;
   events: SimulatedEvent[];
   clearEvents: () => void;
-  previewOutcome: 'success' | 'failure';
-  setPreviewOutcome: (outcome: 'success' | 'failure') => void;
-  addToast: (toast: Omit<ToastMessage, 'id'>) => void;
+  previewOutcome: "success" | "failure";
+  setPreviewOutcome: (outcome: "success" | "failure") => void;
+  addToast: (toast: Omit<ToastMessage, "id">) => void;
 }

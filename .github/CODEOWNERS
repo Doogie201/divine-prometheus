@@ -1,0 +1,5 @@
+# All source files need at least one reviewer from the frontend team
+/src/    @your-org/frontend-team
+
+# Workflow files need ops review
+/.github/workflows/    @your-org/devops-team

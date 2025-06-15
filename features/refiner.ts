@@ -1,28 +1,40 @@
 // == features/refiner.ts ==
 
-export type RefinementFocus = "clarity" | "depth" | "empathy" | "creativity" | "structure";
+export type RefinementFocus =
+  | "clarity"
+  | "depth"
+  | "empathy"
+  | "creativity"
+  | "structure";
 
 export function refinePrompt(original: string, focus: RefinementFocus): string {
   const base = original.trim();
 
   const injections: Record<RefinementFocus, string> = {
     clarity: " Clarify the goal and reduce ambiguity. Define terms clearly.",
-    depth: " Go deeper into principles, unseen layers, and long-term implications.",
-    empathy: " Adjust tone for compassion, respect, and human emotional context.",
+    depth:
+      " Go deeper into principles, unseen layers, and long-term implications.",
+    empathy:
+      " Adjust tone for compassion, respect, and human emotional context.",
     creativity: " Add imaginative elements like metaphor, story, or analogy.",
-    structure: " Organize the response into headings, bullets, or frameworks."
+    structure: " Organize the response into headings, bullets, or frameworks.",
   };
 
   return `${base}${injections[focus]}`;
 }
-
 
 // == components/PromptRefiner.tsx ==
 import React, { useState } from "react";
 import { usePromptEnhancer } from "../hooks/usePromptEnhancer";
 import { refinePrompt, RefinementFocus } from "../features/refiner";
 
-const traits: RefinementFocus[] = ["clarity", "depth", "empathy", "creativity", "structure"];
+const traits: RefinementFocus[] = [
+  "clarity",
+  "depth",
+  "empathy",
+  "creativity",
+  "structure",
+];
 
 export const PromptRefiner: React.FC = () => {
   const { input, updateInput } = usePromptEnhancer();
@@ -58,7 +70,9 @@ export const PromptRefiner: React.FC = () => {
           Refine
         </button>
       </div>
-      <p className="text-xs text-zinc-500">Refines your prompt with emphasis on the selected quality.</p>
+      <p className="text-xs text-zinc-500">
+        Refines your prompt with emphasis on the selected quality.
+      </p>
     </div>
   );
 };

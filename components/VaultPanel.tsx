@@ -57,7 +57,9 @@ export const VaultPanel: React.FC = () => {
               <p className="text-white font-semibold">Original:</p>
               <p className="mb-2 text-zinc-300">{entry.original}</p>
               <p className="text-white font-semibold">Enhanced:</p>
-              <p className="text-green-300 whitespace-pre-wrap">{entry.enhanced}</p>
+              <p className="text-green-300 whitespace-pre-wrap">
+                {entry.enhanced}
+              </p>
             </div>
           ))
         )}

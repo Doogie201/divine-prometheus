@@ -1,0 +1,46 @@
+---
+repos:
+  # 1. Core housekeeping hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-merge-conflict
+
+  # 2. Prettier (JS/TS formatting)
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8          # point at a real tag or branch
+    hooks:
+      - id: prettier
+        additional_dependencies:
+          - prettier@^2.8.0
+        files: '\.(js|jsx|ts|tsx|css|html|json|md)$'
+
+  # 3. ESLint (static analysis)
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v9.29.0        # again, pick a released version
+    hooks:
+      - id: eslint
+        additional_dependencies:
+          - eslint@^9
+          - "@typescript-eslint/parser@^5"
+          - "@typescript-eslint/eslint-plugin@^5"
+        files: '\.(js|jsx|ts|tsx)$'
+
+  # 4. TypeScript type-check
+  - repo: local
+    hooks:
+      - id: ts-typecheck
+        name: TypeScript type-check
+        entry: npx tsc --noEmit
+        language: system
+        pass_filenames: false
+
+  # 5. Conventional-Commits lint on commit-msgs
+  - repo: https://github.com/jorisroovers/gitlint
+    rev: v0.19.1
+    hooks:
+      - id: gitlint
