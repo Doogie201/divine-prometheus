@@ -21,7 +21,6 @@ export const PromptCoachOverlay: React.FC = () => {
   );
 };
 
-
 // == features/promptCoach.ts ==
 
 export function analyzePromptCognitively(prompt: string): string[] {
@@ -30,23 +29,35 @@ export function analyzePromptCognitively(prompt: string): string[] {
   const tips: string[] = [];
 
   if (!/why|how|purpose|goal|intended/i.test(prompt)) {
-    tips.push("Consider explaining the purpose behind your question—what are you trying to create, solve, or transform?");
+    tips.push(
+      "Consider explaining the purpose behind your question—what are you trying to create, solve, or transform?",
+    );
   }
 
   if (!/assume|pretend|role|perspective/i.test(prompt)) {
-    tips.push("Try asking the AI to take on a specific persona or perspective to widen the depth of insight.");
+    tips.push(
+      "Try asking the AI to take on a specific persona or perspective to widen the depth of insight.",
+    );
   }
 
   if (prompt.length < 40) {
-    tips.push("Your prompt is short. What assumptions are being left unsaid that the AI may miss?");
+    tips.push(
+      "Your prompt is short. What assumptions are being left unsaid that the AI may miss?",
+    );
   }
 
   if (!/emotional|empathetic|tone|voice/i.test(prompt)) {
-    tips.push("You haven’t specified tone—consider if you want confidence, warmth, humility, or authority in the response.");
+    tips.push(
+      "You haven’t specified tone—consider if you want confidence, warmth, humility, or authority in the response.",
+    );
   }
 
-  tips.push("What outcome would surprise you? Ask the AI to help you think beyond your current framing.");
-  tips.push("If this question could be automated forever, what would that system need to know or handle?");
+  tips.push(
+    "What outcome would surprise you? Ask the AI to help you think beyond your current framing.",
+  );
+  tips.push(
+    "If this question could be automated forever, what would that system need to know or handle?",
+  );
 
   return tips;
 }

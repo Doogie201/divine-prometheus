@@ -1,0 +1,6 @@
+---
+- id: ts-typecheck
+  name: TypeScript type-check
+  entry: npx tsc --noEmit
+  language: system
+  pass_filenames: false

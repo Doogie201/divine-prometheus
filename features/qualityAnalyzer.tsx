@@ -13,11 +13,10 @@ export function analyzePromptQuality(prompt: string): PromptQualityBreakdown {
   const lc = prompt.toLowerCase();
 
   return {
-    clarity: /
-      who|what|when|where|why|how|define|explain|step-by-step|clearly/
-      .test(lc)
-      ? Math.min(100, 50 + length * 0.1)
-      : 40,
+    clarity:
+      /who|what|when|where|why|how|define|explain|step-by-step|clearly/.test(lc)
+        ? Math.min(100, 50 + length * 0.1)
+        : 40,
 
     depth: /(system|principle|philosophy|impact|consequence|unseen)/.test(lc)
       ? Math.min(100, 60 + length * 0.1)
@@ -27,7 +26,9 @@ export function analyzePromptQuality(prompt: string): PromptQualityBreakdown {
       ? Math.min(100, 70 + length * 0.1)
       : 25,
 
-    creativity: /(metaphor|story|imagine|vision|invent|transform|alchemy)/.test(lc)
+    creativity: /(metaphor|story|imagine|vision|invent|transform|alchemy)/.test(
+      lc,
+    )
       ? Math.min(100, 65 + length * 0.1)
       : 35,
 
@@ -65,7 +66,9 @@ export const PromptQualityMeter: React.FC = () => {
 
   return (
     <div className="bg-zinc-900 p-4 rounded-2xl shadow-lg mt-6">
-      <h2 className="text-xl font-semibold mb-2">📊 Prompt Quality Breakdown</h2>
+      <h2 className="text-xl font-semibold mb-2">
+        📊 Prompt Quality Breakdown
+      </h2>
       <div className="space-y-1">
         <TraitBar label="Clarity" score={quality.clarity} />
         <TraitBar label="Depth" score={quality.depth} />

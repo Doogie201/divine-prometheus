@@ -17,6 +17,6 @@ export function usePromptEnhancer() {
   return {
     input,
     enhanced,
-    updateInput
+    updateInput,
   };
 }

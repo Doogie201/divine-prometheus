@@ -12,11 +12,14 @@ export const enhancerPipeline: EnhancerRule[] = [
   includeEdgeCases,
   explainThoughtProcess,
   futureProof,
-  teachBack
+  teachBack,
 ];
 
 export function enhancePrompt(raw: string): string {
-  return enhancerPipeline.reduce((prompt, ruleFn) => ruleFn(prompt), raw.trim());
+  return enhancerPipeline.reduce(
+    (prompt, ruleFn) => ruleFn(prompt),
+    raw.trim(),
+  );
 }
 
 // === Individual Rules ===

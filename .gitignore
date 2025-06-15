@@ -58,3 +58,4 @@ Thumbs.db
 # lockfiles if you use yarn
 # keep one lockfile only
 package-lock.json
+yarn.lock
