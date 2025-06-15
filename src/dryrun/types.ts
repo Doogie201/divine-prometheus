@@ -104,7 +104,7 @@ export interface DryRunContextType {
   simulate: <T>(
     label: string,
     operation: () => Promise<T>,
-    options?: SimulateOptions<T>
+    options?: SimulateOptions<T>,
   ) => Promise<T>;
   events: SimulatedEvent[];
   clearEvents: () => void;

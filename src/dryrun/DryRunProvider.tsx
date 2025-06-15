@@ -52,7 +52,7 @@ export const DryRunProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [events, setEvents] = useState<SimulatedEvent[]>([]);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
   const [previewOutcome, setPreviewOutcome] = useState<"success" | "failure">(
-    "success"
+    "success",
   );
   const eventIdCounter = useRef(0);
 
@@ -91,7 +91,7 @@ export const DryRunProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const simulate = async <T,>(
     label: string,
     operation: () => Promise<T>,
-    options: SimulateOptions<T> = {}
+    options: SimulateOptions<T> = {},
   ): Promise<T> => {
     const { retries = 0, stub } = options;
     // Sanitize the operation function for display in the log
@@ -104,7 +104,7 @@ export const DryRunProvider: FC<{ children: ReactNode }> = ({ children }) => {
     if (mode === "preview") {
       if (!stub) {
         const error = new Error(
-          "Preview mode requires a 'stub' to be provided."
+          "Preview mode requires a 'stub' to be provided.",
         );
         addEvent({
           ...baseEventData,
@@ -177,7 +177,7 @@ export const DryRunProvider: FC<{ children: ReactNode }> = ({ children }) => {
           if (mode === "healing") {
             console.warn(
               `[HEALING-MODE] Final attempt for "${label}" failed and was suppressed. Error:`,
-              error
+              error,
             );
             addEvent({
               ...baseEventData,

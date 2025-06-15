@@ -27,7 +27,7 @@ export function analyzePromptQuality(prompt: string): PromptQualityBreakdown {
       : 25,
 
     creativity: /(metaphor|story|imagine|vision|invent|transform|alchemy)/.test(
-      lc
+      lc,
     )
       ? Math.min(100, 65 + length * 0.1)
       : 35,

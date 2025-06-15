@@ -19,8 +19,9 @@
   *::after {
     box-sizing: border-box;
   }
-  *:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol
-        *)) {
+  *:where(
+      :not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)
+    ) {
     all: unset;
     display: revert;
   }
@@ -209,12 +210,15 @@
     border-radius: var(--radius-lg);
     border: 1px solid hsl(var(--color-border));
     box-shadow: var(--shadow-md);
-    transition: transform var(--transition-fast),
+    transition:
+      transform var(--transition-fast),
       box-shadow var(--transition-fast);
   }
   .card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-lg), 0 0 20px -5px hsl(var(--color-accent) / 0.2);
+    box-shadow:
+      var(--shadow-lg),
+      0 0 20px -5px hsl(var(--color-accent) / 0.2);
   }
 
   /*
@@ -231,7 +235,8 @@
     font-weight: 600;
     color: hsl(var(--color-background));
     background-color: hsl(var(--color-primary));
-    transition: transform var(--transition-fast),
+    transition:
+      transform var(--transition-fast),
       background-color var(--transition-fast);
   }
   .button-primary:hover {

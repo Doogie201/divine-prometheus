@@ -163,8 +163,8 @@ const ClarityGauge = ({ score }: { score: number }) => {
     score > 80
       ? "text-[var(--color-glow-success)]"
       : score > 50
-      ? "text-[var(--color-glow-warning)]"
-      : "text-[var(--color-glow-danger)]";
+        ? "text-[var(--color-glow-warning)]"
+        : "text-[var(--color-glow-danger)]";
 
   return (
     // Component Module: Clarity Score Visualizer
@@ -308,13 +308,13 @@ export default function PromptWorkbench({ onClose }: WorkbenchProps) {
         const match = text.match(vagueRegex);
         if (match && text.endsWith(match[0])) {
           setSuggestion(
-            text.slice(0, -match[0].length) + `specify the ${match[0]}`
+            text.slice(0, -match[0].length) + `specify the ${match[0]}`,
           );
         } else {
           setSuggestion("");
         }
       }, 300), // Slightly longer debounce for a smoother feel
-    []
+    [],
   );
 
   useEffect(() => {
@@ -341,7 +341,7 @@ export default function PromptWorkbench({ onClose }: WorkbenchProps) {
           success: { metaPrompt: "stub", reasoning: [] },
           failure: new Error("fail"),
         },
-      }
+      },
     );
     setEnhanced(result);
     const entry = { ts: Date.now(), raw, meta: result } as VaultEntry;
@@ -354,7 +354,7 @@ export default function PromptWorkbench({ onClose }: WorkbenchProps) {
       message: "Prompt saved to vault.",
     });
     fetch("/api/vault", { method: "POST", body: JSON.stringify(entry) }).catch(
-      () => {}
+      () => {},
     );
   };
 
@@ -394,7 +394,7 @@ export default function PromptWorkbench({ onClose }: WorkbenchProps) {
     window.open(
       "https://chat.openai.com/?prompt=" +
         encodeURIComponent(enhanced.metaPrompt),
-      "_blank"
+      "_blank",
     );
   };
 

@@ -9,5 +9,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <DryRunProvider>
       <App />
     </DryRunProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

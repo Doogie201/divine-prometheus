@@ -63,7 +63,7 @@ interface DryRunContextType {
   simulate: <T>(
     label: string,
     operation: () => Promise<T>,
-    options?: SimulateOptions<T>
+    options?: SimulateOptions<T>,
   ) => Promise<T>;
   events: SimulatedEvent[];
   clearEvents: () => void;
@@ -187,7 +187,7 @@ const DryRunProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [events, setEvents] = useState<SimulatedEvent[]>([]);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
   const [previewOutcome, setPreviewOutcome] = useState<"success" | "failure">(
-    "success"
+    "success",
   );
   const eventIdCounter = useRef(0);
 
@@ -218,7 +218,7 @@ const DryRunProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const simulate = async <T,>(
     label: string,
     operation: () => Promise<T>,
-    options: SimulateOptions<T> = {}
+    options: SimulateOptions<T> = {},
   ): Promise<T> => {
     const { retries = 0, stub } = options;
     const operationString =
@@ -229,7 +229,7 @@ const DryRunProvider: FC<{ children: ReactNode }> = ({ children }) => {
     if (mode === "preview") {
       if (!stub) {
         const error = new Error(
-          "Preview mode requires a 'stub' to be provided."
+          "Preview mode requires a 'stub' to be provided.",
         );
         addEvent({
           ...baseEventData,
@@ -296,7 +296,7 @@ const DryRunProvider: FC<{ children: ReactNode }> = ({ children }) => {
           if (mode === "healing") {
             console.warn(
               `[HEALING-MODE] Final attempt for "${label}" failed and was suppressed. Error:`,
-              error
+              error,
             );
             addEvent({
               ...baseEventData,
@@ -923,7 +923,7 @@ const AppContent: FC = () => {
             success: { success: true },
             failure: new Error("Preview failed: Could not access document"),
           },
-        }
+        },
       );
       addToast({
         type: "success",
@@ -957,7 +957,7 @@ const AppContent: FC = () => {
               success: { success: true, userId: "usr_stub_123" },
               failure: new Error("Invalid user name"),
             },
-          }
+          },
         );
         addToast({
           type: "success",

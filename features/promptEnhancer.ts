@@ -18,7 +18,7 @@ export const enhancerPipeline: EnhancerRule[] = [
 export function enhancePrompt(raw: string): string {
   return enhancerPipeline.reduce(
     (prompt, ruleFn) => ruleFn(prompt),
-    raw.trim()
+    raw.trim(),
   );
 }
 

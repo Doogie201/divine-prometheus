@@ -27,7 +27,7 @@ interface DryRunContextType {
   setPreviewOutcome: (outcome: "success" | "failure") => void;
 }
 const DryRunContext = React.createContext<DryRunContextType | undefined>(
-  undefined
+  undefined,
 );
 const useDryRun = () => {
   const ctx = useContext(DryRunContext);
@@ -35,7 +35,7 @@ const useDryRun = () => {
     // Fallback to a mock context for isolated viewing:
     const [mode, setMode] = useState<DryRunMode>("dry");
     const [previewOutcome, setPreviewOutcome] = useState<"success" | "failure">(
-      "success"
+      "success",
     );
     // Note the explicit `error: undefined` and cast to SimulatedEvent
     const stubEvent: SimulatedEvent = {
