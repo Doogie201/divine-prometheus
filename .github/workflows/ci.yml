@@ -11,21 +11,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "18"
+
+      # ---------- JS dependencies ----------
+      - name: Install JS deps
+        run: npm ci            # uses package-lock.json
+
+      # ---------- pre-commit hooks ----------
       - name: Install Python & pre-commit
         run: |
           python3 -m pip install --upgrade pip pre-commit
-      - name: Install JS deps
-        run: yarn install --frozen-lockfile
       - name: Run pre-commit hooks
         run: pre-commit run --all-files
+
+      # ---------- tests + coverage ----------
       - name: Run tests + coverage
-        run: yarn test --coverage
+        run: npm test -- --coverage   # assumes “test” script exists
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: Doogie201/divine-prometheus
+
