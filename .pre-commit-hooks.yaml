@@ -1,5 +1,4 @@
 ---
-
 - id: ts-typecheck
   name: TypeScript type-check
   entry: npx tsc --noEmit

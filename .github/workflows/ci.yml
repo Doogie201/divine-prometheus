@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   pre-commit:
@@ -19,7 +19,7 @@ jobs:
 
       # ---------- JS dependencies ----------
       - name: Install JS deps
-        run: npm ci            # uses package-lock.json
+        run: npm ci # uses package-lock.json
 
       # ---------- pre-commit hooks ----------
       - name: Install Python & pre-commit
@@ -30,7 +30,7 @@ jobs:
 
       # ---------- tests + coverage ----------
       - name: Run tests + coverage
-        run: npm test -- --coverage   # assumes “test” script exists
+        run: npm test -- --coverage # assumes “test” script exists
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
         with:
