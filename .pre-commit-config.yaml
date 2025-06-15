@@ -11,7 +11,7 @@ repos:
 
   # prettier
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v2.8.0  # use the actual tag name (no "prettier@" prefix)
+    rev: v3.1.0  # use the actual tag name (no "prettier@" prefix)
     hooks:
       - id: prettier
         files: \.(js|jsx|ts|tsx|json|css|scss|md|ya?ml)$
@@ -50,3 +50,12 @@ repos:
     rev: v0.19.1
     hooks:
       - id: gitlint
+  
+  - name: debug – show prettier tags
+    run: |
+      git clone --filter=blob:none --quiet https://github.com/pre-commit/mirrors-prettier mirror
+      git -C mirror tag -l 'v*' | sort -V | tail
+
+  - name: debug – print .pre-commit-config.yaml
+    run: cat .pre-commit-config.yaml
+    
