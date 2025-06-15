@@ -4,7 +4,7 @@ import { Navigation, Page } from "./components/Navigation";
 import { UserCreationForm } from "./components/UserCreationForm";
 import PromptWorkbench from "./echomind/PromptWorkbench";
 import { useDryRun } from "./dryrun/DryRunProvider";
-import { DryRunDashboard } from "./dryrun/DryRunDashboard";
+import DryRunDashboard from "./dryrun/DryRunDashboard";
 import { THEME } from "./components/theme";
 
 const AppContent: React.FC = () => {
