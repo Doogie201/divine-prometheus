@@ -1,54 +1,24 @@
-# React + TypeScript + Vite
+# Divine Prometheus
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Divine Prometheus is an experimental React + TypeScript project showcasing advanced AI tooling. The codebase includes a **DryRun** environment for testing application logic without side effects and an **EchoMind** workbench for refining AI prompts. Together they provide a playground for exploring prompt engineering and simulated execution flows.
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+```bash
+npm install
+npm run dev   # start Vite development server
+npm run build # compile TypeScript and build for production
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Architecture Overview
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+- `src/dryrun/` – Components supporting the DryRun environment. `DryRunProvider` manages simulation state and `DryRunDashboard` visualizes events.
+- `src/echomind/` – The prompt tooling suite. `PromptEngine` analyzes and enhances prompts while `PromptWorkbench` offers an interactive UI to experiment with prompt strategies.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    "react-x": reactX,
-    "react-dom": reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs["recommended-typescript"].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
-```
+## Pre-commit Hooks
+
+This repository uses [pre-commit](https://pre-commit.com/) for linting, formatting, and TypeScript checks. Run `pre-commit install` once to enable Git hooks, or manually execute `pre-commit run --all-files` before committing.
+
+## Testing
+
+The project currently has a placeholder test script. Run `npm test` to execute it. Continuous integration also runs pre-commit hooks and the test script.
