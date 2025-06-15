@@ -6,11 +6,12 @@
 repos:
   # General pre-commit hooks for common code quality checks
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    # Using a specific revision for stability
-    rev: v4.6.0
+    # Using the latest stable revision for pre-commit-hooks
+    # This should ensure all standard hooks are available and up-to-date.
+    rev: v4.6.0 # Current latest as of check
     hooks:
       - id: end-of-file-fixer # Ensures files end with a single newline
-      - id: trim-trailing-whitespace # Removes extraneous whitespace at the end of lines
+      - id: trailing-whitespace # CORRECTED: Removes extraneous whitespace at the end of lines
       - id: check-yaml # Checks YAML files for syntax errors
       - id: check-added-large-files # Prevents committing excessively large files
       - id: check-merge-conflict # Checks for Git merge conflict strings
@@ -27,10 +28,9 @@ repos:
   # ESLint hook for JavaScript/TypeScript linting using the mirrors-eslint repo
   # This hook is configured to work with ESLint v9's flat config system
   - repo: https://github.com/pre-commit/mirrors-eslint
-    # Crucially, pin to an ESLint 9 compatible revision.
-    # You might need to experiment or check mirrors-eslint's releases for the latest stable that bundles ESLint 9.
-    # As of current knowledge, `v9.2.9` (or newer if available) should support ESLint 9.
-    rev: "eslint@9.29.0" # Pin to the exact ESLint version if possible, or use a compatible tag like v9.x.y
+    # CORRECTED: Use a valid Git tag from the mirrors-eslint repository.
+    # v4.0.0 specifically states it upgrades eslint to v9.2.0.
+    rev: v4.0.0
     hooks:
       - id: eslint
         name: ESLint (Flat Config) # Descriptive name for the hook
@@ -42,7 +42,7 @@ repos:
           - "--config"
           - "eslint.config.cjs" # Point to the renamed CommonJS config file
           - "--fix" # Optional: enable auto-fixing for lint errors
-        # Language is javascript, but it will process TS/TSX due to ESLint config and parser
+        # Language is node, as it's a Node.js-based hook
         language: node
         # Add all dependencies that your eslint.config.cjs imports or extends from
         # These will be installed in the isolated pre-commit.ci environment for the hook.
@@ -63,8 +63,7 @@ repos:
     rev: "v0.19.1" # Use a stable revision
     hooks:
       - id: gitlint
-
-
+      
   # 4. TypeScript type-check
   - repo: local
     hooks:
