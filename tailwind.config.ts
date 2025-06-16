@@ -13,6 +13,7 @@
  */
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
+import formsPlugin from "@tailwindcss/forms";
 
 export default {
   // Set dark mode to be toggled via a '.dark' class on the html/body tag.
@@ -139,5 +140,5 @@ export default {
   //     - Adds official Tailwind plugins for enhanced functionality.
   //       - @tailwindcss/forms: Provides a basic reset for form styles.
   // ===========================================================================
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [formsPlugin, tailwindcssAnimate],
 } satisfies Config;
