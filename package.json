@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "css:build": "postcss src/index.css -o dist/tailwind.css",
+    "css:build": "npx postcss src/index.css -o dist/tailwind.css",
     "lint": "eslint .",
     "preview": "vite preview",
     "tailwind:build": "npx tailwindcss -o src/tailwind.css --minify",
@@ -37,6 +37,7 @@
     "jest": "^30.0.0",
     "jest-environment-jsdom": "^30.0.0",
     "postcss": "^8.5.5",
+    "postcss-cli": "^11.0.1",
     "tailwindcss": "^4.1.10",
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",

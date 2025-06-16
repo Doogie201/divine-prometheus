@@ -8,6 +8,7 @@ Divine Prometheus is an experimental React + TypeScript project showcasing advan
 npm install
 npm run dev   # start Vite development server
 npm run build # compile TypeScript and build for production
+npm run css:build # generate dist/tailwind.css using PostCSS
 ```
 
 ## Architecture Overview
