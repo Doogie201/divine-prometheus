@@ -11,14 +11,14 @@ repos:
 
   # prettier
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.1.0 # use the actual tag name (no "prettier@" prefix)
+    rev: v4.0.0-alpha.8 # use the actual tag name (no "prettier@" prefix)
     hooks:
       - id: prettier
         files: \.(js|jsx|ts|tsx|json|css|scss|md|ya?ml)$
 
   # eslint 9 flat-config
   - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: v9.29.0
+    rev: v9.30.1
     hooks:
       - id: eslint
         name: eslint-flat
