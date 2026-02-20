@@ -15,97 +15,7 @@ import {
   type EnhancedPrompt,
 } from "./PromptEngine";
 import { useDryRun } from "../dryrun/DryRunProvider";
-
-/* -------------------------------------------------------------------------- */
-/* 🎨 Design System & Color Palette Strategy (Neural Aurora Theme)          */
-/* -------------------------------------------------------------------------- */
-// This style block defines the foundational design tokens for the entire UI.
-// It uses CSS variables for easy theming, supporting the requested dark mode
-// with soft neon glows and harmonized contrasts. Each color is chosen for its
-// psychological impact, evoking creativity, clarity, and futuristic calm.
-const GlobalStyles = () => (
-  <style>{`
-    :root {
-      /* --- Base Palette --- */
-      --color-bg-primary: hsl(220, 25%, 8%); /* Deep, calm space blue */
-      --color-bg-secondary: hsl(220, 25%, 12%); /* Slightly lighter layer */
-      --color-bg-tertiary: hsl(220, 25%, 16%); /* For interactive elements */
-      --color-glass-border: hsla(219, 31%, 75%, 0.1); /* Subtle edge for glassmorphism */
-
-      /* --- Text & Content --- */
-      --color-text-primary: hsl(215, 20%, 90%); /* Soft, readable off-white */
-      --color-text-secondary: hsl(215, 15%, 65%); /* For metadata and hints */
-      --color-text-tertiary: hsl(215, 10%, 45%); /* For disabled/placeholder states */
-
-      /* --- Accents & CTAs (The Dopamine Triggers) --- */
-      --color-accent-primary: hsl(170, 90%, 60%); /* Vibrant, energetic teal */
-      --color-accent-secondary: hsl(290, 85%, 70%); /* Creative, inspiring violet */
-
-      /* --- Semantic States --- */
-      --color-glow-success: hsl(130, 90%, 55%);
-      --color-glow-warning: hsl(40, 95%, 65%);
-      --color-glow-danger: hsl(350, 95%, 65%);
-
-      /* --- Shadows & Glows (The Ethereal Touch) --- */
-      --shadow-glow-accent: 0 0 20px -5px hsla(170, 90%, 60%, 0.4), 0 0 8px -6px hsla(170, 90%, 60%, 1);
-      --shadow-glow-sm: 0 0 8px -2px hsla(0, 0%, 0%, 0.5);
-      --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-
-    /* -------------------------------------------------------------------------- */
-    /* ✨ Dopamine Loop Engineering & Micro-interactions                        */
-    /* -------------------------------------------------------------------------- */
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    .animate-fade-in-down {
-      /* This animation guides focus and creates a smooth, frictionless entry. */
-      animation: fadeInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    @keyframes aurora-bg {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-    .animate-aurora {
-      /* A subtle, living background that suggests AI-level genius and creativity. */
-      background: linear-gradient(-45deg,
-        hsla(170, 90%, 60%, 0.05),
-        hsla(220, 25%, 8%, 1),
-        hsla(220, 25%, 8%, 1),
-        hsla(290, 85%, 70%, 0.05)
-      );
-      background-size: 400% 400%;
-      animation: aurora-bg 20s ease infinite;
-    }
-
-    @keyframes shimmer {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
-    }
-    .hover-shimmer {
-        background-image: linear-gradient(110deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
-        background-size: 200% 100%;
-    }
-    .hover-shimmer:hover {
-        animation: shimmer 1.5s infinite linear;
-    }
-
-    /* --- Custom Scrollbar for a polished feel --- */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb {
-      background-color: hsla(219, 15%, 50%, 0.4);
-      border-radius: 4px;
-      transition: background-color 0.3s ease;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background-color: hsla(219, 15%, 50%, 0.7);
-    }
-  `}</style>
-);
+import "./PromptWorkbench.css";
 
 /* -------------------------------------------------------------------------- */
 /* 🔮 Icon Library (Enhanced for Visual Harmony)                              */
@@ -409,7 +319,6 @@ export default function PromptWorkbench({ onClose }: WorkbenchProps) {
 
   return (
     <>
-      <GlobalStyles />
       <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/50 font-sans text-[var(--color-text-primary)] backdrop-blur-lg">
         {/* 🆕 2. backdrop closes overlay AND notifies parent */}
         <div
