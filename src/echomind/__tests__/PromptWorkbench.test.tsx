@@ -26,4 +26,48 @@ describe("PromptWorkbench", () => {
 
     expect(button).not.toBeDisabled();
   });
+
+  it("logs error and shows toast when vault sync fails", async () => {
+    const consoleSpy = jest
+      .spyOn(console, "error")
+      .mockImplementation(() => {});
+    const fetchSpy = jest
+      .spyOn(global, "fetch")
+      .mockImplementation(() => Promise.reject(new Error("Network error")));
+
+    render(
+      <DryRunProvider>
+        <PromptWorkbench />
+      </DryRunProvider>,
+    );
+
+    // Trigger analysis
+    fireEvent.change(screen.getByPlaceholderText(/describe your goal/i), {
+      target: { value: "Test prompt" },
+    });
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    // Click enhance
+    const enhanceButton = screen.getByRole("button", { name: /enhance/i });
+    await act(async () => {
+      fireEvent.click(enhanceButton);
+    });
+
+    expect(fetchSpy).toHaveBeenCalledWith("/api/vault", expect.any(Object));
+    expect(consoleSpy).toHaveBeenCalledWith(
+      "Vault sync failed:",
+      expect.any(Error),
+    );
+
+    // Check for toast message
+    expect(await screen.findByText(/Vault Sync Failed/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Could not save your prompt to the server./i),
+    ).toBeInTheDocument();
+
+    consoleSpy.mockRestore();
+    fetchSpy.mockRestore();
+  });
 });
