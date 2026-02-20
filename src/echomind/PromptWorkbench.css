@@ -31,11 +31,11 @@
   --color-glow-danger: hsl(350, 95%, 65%);
 
   /* --- Shadows & Glows (The Ethereal Touch) --- */
-  --shadow-glow-accent:
-    0 0 20px -5px hsla(170, 90%, 60%, 0.4), 0 0 8px -6px hsla(170, 90%, 60%, 1);
+  --shadow-glow-accent: 0 0 20px -5px hsla(170, 90%, 60%, 0.4),
+    0 0 8px -6px hsla(170, 90%, 60%, 1);
   --shadow-glow-sm: 0 0 8px -2px hsla(0, 0%, 0%, 0.5);
-  --shadow-soft:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 /* -------------------------------------------------------------------------- */
