@@ -20,8 +20,12 @@ describe("Navigation", () => {
     render(<Navigation {...defaultProps} />);
 
     expect(screen.getByRole("button", { name: /home/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /test form/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /workbench/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /test form/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /workbench/i }),
+    ).toBeInTheDocument();
   });
 
   it("calls setPage('home') when Home button is clicked", () => {
@@ -74,7 +78,9 @@ describe("Navigation", () => {
   });
 
   it("updates active styling when mode changes", () => {
-    const { rerender } = render(<Navigation {...defaultProps} page="home" mode="dry" />);
+    const { rerender } = render(
+      <Navigation {...defaultProps} page="home" mode="dry" />,
+    );
 
     let homeButton = screen.getByRole("button", { name: /home/i });
     expect(homeButton).toHaveClass(THEME.modes.dry.textColor);
