@@ -28,7 +28,9 @@ describe("PromptWorkbench", () => {
   });
 
   it("logs error and shows toast when vault sync fails", async () => {
-    const consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {});
+    const consoleSpy = jest
+      .spyOn(console, "error")
+      .mockImplementation(() => {});
     const fetchSpy = jest
       .spyOn(global, "fetch")
       .mockImplementation(() => Promise.reject(new Error("Network error")));
