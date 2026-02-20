@@ -355,7 +355,14 @@ export default function PromptWorkbench({ onClose }: WorkbenchProps) {
       message: "Prompt saved to vault.",
     });
     fetch("/api/vault", { method: "POST", body: JSON.stringify(entry) }).catch(
-      () => {},
+      (error) => {
+        console.error("Vault sync failed:", error);
+        addToast({
+          type: "error",
+          title: "Vault Sync Failed",
+          message: "Could not save your prompt to the server.",
+        });
+      },
     );
   };
 
