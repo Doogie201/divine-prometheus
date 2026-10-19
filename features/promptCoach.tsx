@@ -1,11 +1,7 @@
 // == features/promptCoach.ts ==
 
 export type CognitionLevel =
-  | "Reactive"
-  | "Curious"
-  | "Strategic"
-  | "Meta-Cognitive"
-  | "Divine";
+  "Reactive" | "Curious" | "Strategic" | "Meta-Cognitive" | "Divine";
 
 export function analyzePromptCognitively(prompt: string): string[] {
   if (!prompt.trim()) return [];

@@ -1,11 +1,7 @@
 // == features/refiner.ts ==
 
 export type RefinementFocus =
-  | "clarity"
-  | "depth"
-  | "empathy"
-  | "creativity"
-  | "structure";
+  "clarity" | "depth" | "empathy" | "creativity" | "structure";
 
 export function refinePrompt(original: string, focus: RefinementFocus): string {
   const base = original.trim();
